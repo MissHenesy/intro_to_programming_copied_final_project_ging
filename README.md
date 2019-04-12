@@ -17,7 +17,7 @@ To get the full experience of the site, download the repo into a local directory
   - I've hidden the "Clear Results" button; it doesn't seem necessary now, since new searches will completely replace the results. But, since it might still be a matter of preference as to whether it should appear, it can easily be returned by removing the "class='hidden'" propery on its div container.
   - When the "Date" radio box is selected, a jQuery datepicker is added to the input box, allowing for consistent date input. The date input is then formatted via javascript
   - Search results are sorted by date/time, then by title
-  - Broke the html page apart into separate html, css, and javascript files
+  - Separated the code into individual html, css, and javascript files
 * Refactored code
   - Made the calls to SeatGeek and Ticketmaster asynchronous rather than synchronous
   - Uses "Promise.all" function called "await_getAllEvents" to query the APIs
