@@ -228,13 +228,13 @@ function clearResults()
   if (listsummed) listsummed.length = 0;
 }
 //-----------------------------------------------------------------------------
-async function await_getAllEvents(type, val)
+async function await_getAllEvents(input_type, input_val)
 {
     try
     {
       let promises = [];
-      let p1 = seatGeekResults(type, val);
-      let p2 = ticketMasterResults(type, val);
+      let p1 = seatGeekResults(input_type, input_val);
+      let p2 = ticketMasterResults(input_type, input_val);
 
       promises.push(p1,p2);
       result = await Promise.all(promises)
