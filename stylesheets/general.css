@@ -1,0 +1,114 @@
+/* General DOM Objects */
+*, html {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 1em;
+  font: 18px Helvetica, Arial, sans-serif;
+  color: #d1c86b;
+  background-image: url("https://wallpaperplay.com/walls/full/b/e/3/29079.jpg");
+}
+fieldset {
+  margin: 1em 1em 2em 1em;
+  padding: 1em;
+}
+fieldset legend {
+  font-size: 160%;
+  font-weight: bold;
+}
+select {
+  font: inherit;
+}
+p {
+  margin: 0.25em 0;
+}
+input {
+  font: inherit;
+}
+h1 {
+  margin-top: 1em;
+  text-align: center;
+}
+h2 {
+  margin-bottom: 1em;
+  font-size: 160%;  
+}
+h3 {
+  font-size: 120%;
+  font-weight: bold;
+  text-align: left;
+}
+hr {
+  margin: 1em 0;
+}
+button, input[type="submit"] {
+  height: 40px;
+  width: 180px;
+  font-weight: bold;
+  font-size: 100%;
+  margin-top: 12px;
+  border-radius: 15%;
+  background-color: #bfbcb0;
+}
+button:hover {
+  color: #6a6a6b;
+  cursor: pointer;
+}
+table {
+  margin-top: 12px;
+  border: 1px solid black;
+  width: 90%;
+}
+table td {
+  border: 1px solid black;
+  padding-left: 0.3em;
+  background-color: #b9b9c0;
+  color: #000000;
+}
+table td button {
+  display: block;
+  margin: auto;
+  border-radius: 100%;
+  background-color: #d1c86b;
+}
+/* Search/Results objects */
+#div_container, #div_Search_Results {
+  margin: 1em;
+}
+#div_My_Events_Calendar, #div_Total_Return {
+    margin: 1em 0;
+}
+#div_No_Results_Found {
+  margin: 15px 0 0 30px;
+  color: #ff0000;
+}
+#fldset_Search_Input input {
+  height: 25px;
+}
+#fldset_Search_Input input[type="radio"] {
+  margin: 1px 3px 1px 18px;
+}
+#fldset_Search_Input input[type="text"],
+#fldset_Search_Input input[type="date"] {
+  margin: 12px 0 12px 0;
+  width: 350px;
+}
+#div_Search_Results #btn_AddToList {
+  /* font-size: 80%; */
+  /* height: 30px; */
+}
+#div_Artist_Pic img {
+  height: 200px;
+}
+/* Classes */
+.hidden {
+  display: none;
+}
+.success_msg {
+  color: #0a730a;
+}
+.error_msg {
+  color: #ff0000;
+  font-style: italic;
+}
