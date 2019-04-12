@@ -186,7 +186,7 @@ function loadSavedList()
 //-----------------------------------------------------------------------------
 function validateForm() {
   let search_input = get_search_input();
-  let input_type = search_input.type;
+  let input_type = search_input.val_type;
   let input_val = search_input.val;
   let err_msg = "";
 
@@ -503,16 +503,16 @@ function compareListsB()
 function get_search_input()
 {
   let val = null;
-  let type = $("input:radio:checked").val();
+  let val_type = $("input:radio:checked").val();
 
-  if (type === "datetime")
+  if (val_type === "datetime")
   {
     val = $("#date_input").val().trim();
   } else  {
     val = $("#search_input").val().trim();
   }
 
-  return { val, type }
+  return { val, val_type }
 }
 //-----------------------------------------------------------------------------
 function format_date(date_val, format_type)
