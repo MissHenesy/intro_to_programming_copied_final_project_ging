@@ -21,7 +21,8 @@ To get the full experience of the site, download the repo into a local directory
 * Refactored code
   - Made the calls to SeatGeek and Ticketmaster asynchronous rather than synchronous
   - Uses "Promise.all" function called "await_getAllEvents" to query the APIs
-  - "getEventDetails" parses through results sent by both APIs and feeds info to the Event class
+  - "getEventDetails" parses through results sent by both APIs and returns array of event info
+  - "ticketMasterResults" and "seatGeekResults" consume info sent to them by "getEventDetails"
   - Finally, "displayEvents" displays the concatenated list of SeatGeek & Ticketmaster info
   - Expanded search results to return 10 records per API
   - Added a few helper functions
