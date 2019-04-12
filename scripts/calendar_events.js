@@ -126,8 +126,6 @@ function addToMyList(index)
   {
     savedEvents.push(event);
   }
-  console.log("SAVED EVENTS NOW::")
-  console.log(savedEvents);
   window.localStorage.setItem("SavedEvents",JSON.stringify(savedEvents));
   let displaySavedList = "<table><tr><th>Who</th><th>When</th><th>Where</th><th>&nbsp;</th></tr>";
   for (let x = 0; x < savedEvents.length; x++)
@@ -279,6 +277,8 @@ function seatGeekResults(input_type, input_val)
   }
   api_url += `&${qtypesg}=${q_input}`;
 
+  // SEATGEEK API URL::
+  //console.log(api_url);
   return new Promise((resolve, reject) => {
     $.ajax({
       url: api_url,
@@ -318,6 +318,8 @@ function ticketMasterResults(input_type, input_val)
       input_val = format_date(input_val, "iso_datetime_tz0");
       break;
   }
+  // TICKETMASTER API URL::
+  // console.log(`${api_url}&${qtypetm}=${input_val}${sort}`)
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "GET",
