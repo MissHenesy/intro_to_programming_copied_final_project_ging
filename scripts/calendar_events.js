@@ -83,6 +83,14 @@ function attachDOMevents()
    // Uncheck all radio buttons
   $("input:radio").prop("checked", false);
 
+  // Dynamically click submit button when return key is pressed
+  $("input:text").keypress(function(e)
+    {
+      if(e.keyCode === 13)
+      $("#button_search_submit").click();
+    }
+  );
+
   // Make sure our date input field shows a calendar for user input
   $("#date_input").datepicker({ minDate: 0 });
 
