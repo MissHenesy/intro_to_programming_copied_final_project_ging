@@ -278,7 +278,7 @@ function seatGeekResults(input_type, input_val)
   api_url += `&${qtypesg}=${q_input}`;
 
   // SEATGEEK API URL::
-  //console.log(api_url);
+  // console.log(api_url);
   return new Promise((resolve, reject) => {
     $.ajax({
       url: api_url,
@@ -377,7 +377,18 @@ function getEventDetails(api_name, json)
             case "seatgeek":
               events = json[x];
               title = events.title;
-              datetime = events.datetime_local;
+              if (events.time_tbd)
+              {
+                // The start time is "TBD", so use format_date function
+                // to return the date without the time... otherwise the
+                // event will appear to start at 3:30am, the "sentinel time"
+                // used by SeatGeek whenever times are not yet set. (See
+                // SeatGeek API documentation for more info.)
+                datetime = format_date(events.datetime_local);
+              } else {
+                // We have a date and a time, huzzah
+                datetime = events.datetime_local;
+              }
               if (events.venue)
               {
                 venues = events.venue;
@@ -394,8 +405,13 @@ function getEventDetails(api_name, json)
             case "ticketmaster":
               events = json[x];
               title = events.name;
-              if (events.dates.start.localDate) datetime = `${events.dates.start.localDate}`;
-              if (events.dates.start.localTime) datetime += `T${events.dates.start.localTime}`;
+              if (events.dates.start.timeTBA)
+              {
+                datetime = events.dates.start.localDate;
+              } else {
+                if (events.dates.start.localDate) datetime = events.dates.start.localDate;
+                if (events.dates.start.localTime) datetime += `T${events.dates.start.localTime}`;
+              }
               if (events._embedded && events._embedded.venues)
               {
                 venues = events._embedded.venues[0];
@@ -515,7 +531,7 @@ function get_search_input()
   return { val, val_type }
 }
 //-----------------------------------------------------------------------------
-function format_date(date_val, format_type)
+function format_date(date_val, format_type="")
 {
   if (!isDate(date_val))
   {
