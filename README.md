@@ -16,6 +16,8 @@ To get the full experience of the site, download the repo into a local directory
   - Added some CSS to change the look of the page
   - I've hidden the "Clear Results" button; it doesn't seem necessary now, since new searches will completely replace the results. But, since it might still be a matter of preference as to whether it should appear, it can easily be returned by removing the "class='hidden'" propery on its div container.
   - When the "Date" radio box is selected, a jQuery datepicker is added to the input box, allowing for consistent date input. The date input is then formatted via javascript
+  - Added links to event results, so users can visit the SeatGeek/Ticketmaster sites to get tickets
+  - Changed time format from military time to 24 hour time (i.e., 19:00 now displays as 7:00P.M.)
   - Search results are sorted by date/time, then by title
   - Separated the code into individual html, css, and javascript files
 * Refactored code
