@@ -13,11 +13,12 @@ let listsummed = new Array();
 //EVENT CLASS PROTOTYPE
 class Event
 {
-  constructor(title, datetime, venue_name, venue_address1, venue_address2,
-              venue_city, venue_region, venue_postal_code,
-              venue_country, venue_url)
+  constructor(title, url, datetime, venue_name,
+              venue_address1, venue_address2, venue_city,
+              venue_region, venue_postal_code, venue_country, venue_url)
   {
     this._title = title;
+    this._url = url;
     this._datetime = datetime;
     this._venue_name = venue_name;
     this._venue_address1 = venue_address1;
@@ -31,6 +32,10 @@ class Event
   title()
   {
     return this._title;
+  }
+  url()
+  {
+    return this._url;
   }
   datetime()
   {
@@ -130,11 +135,10 @@ function addToMyList(index)
   let displaySavedList = "<table><tr><th>Who</th><th>When</th><th>Where</th><th>&nbsp;</th></tr>";
   for (let x = 0; x < savedEvents.length; x++)
   {
-    let listItem = `<tr><td>${savedEvents[x]._title}</td>
+    let listItem = `<tr><td><a href="${savedEvents[x]._url}" target="_blank">${savedEvents[x]._title}</a></td>
                     <td>${format_date(savedEvents[x]._datetime, "iso_date_with_human_time")}</td>
                     <td>${savedEvents[x]._venue_name}</td>
-                    <td><button onclick="removeFromMyList('${x}')">
-                    Remove</button></td></tr>`;
+                    <td><button onclick="removeFromMyList('${x}')">Remove</button></td></tr>`;
     displaySavedList += listItem;
   }
   displaySavedList += '</table>';
@@ -149,7 +153,7 @@ function removeFromMyList(index)
   for (var x=0;x<savedEvents.length;x++)
   {
     var listItem = `<tr>
-                   <td>${savedEvents[x]._title}</td>
+                   <td><a href="${savedEvents[x]._url}" target="_blank">${savedEvents[x]._title}</a></td>
                    <td>${format_date(savedEvents[x]._datetime, "iso_date_with_human_time")}</td>
                    <td>${savedEvents[x]._venue_name}</td>
                    <td><button onclick="removeFromMyList(${x})">Remove</button></td>
@@ -172,7 +176,7 @@ function loadSavedList()
     let displaySavedList = "<table><tr><th>Who</th><th>When</th><th>Where</th><th>&nbsp;</th></tr>";
     for (var x = 0; x < savedEvents.length; x++)
     {
-      let listItem = `<tr><td>${savedEvents[x]._title}</td>
+      let listItem = `<tr><td><a href="${savedEvents[x]._url}" target="_blank">${savedEvents[x]._title}</a></td>
                       <td>${format_date(savedEvents[x]._datetime, "iso_date_with_human_time")}</td>
                       <td>${savedEvents[x]._venue_name}</td>
                       <td><button onclick="removeFromMyList('${x}')">
@@ -352,7 +356,7 @@ function getEventDetails(api_name, json)
     }
 
     let shows = new Array(),
-        title, datetime, events,
+        title, url, datetime, events,
         venues, venue_name, venue_address1, venue_address2,
         venue_city, venue_region, venue_postal_code, venue_country,
         venue_url, artist_photo;
@@ -360,6 +364,7 @@ function getEventDetails(api_name, json)
         for (let x = 0; x < json.length; x++)
         {
           title = null;
+          url = null;
           datetime = null;
           events = null;
           venues = null;
@@ -377,6 +382,7 @@ function getEventDetails(api_name, json)
             case "seatgeek":
               events = json[x];
               title = events.title;
+              url = events.url;
               if (events.time_tbd)
               {
                 // The start time is "TBD", so use format_date function
@@ -405,6 +411,7 @@ function getEventDetails(api_name, json)
             case "ticketmaster":
               events = json[x];
               title = events.name;
+              url = events.url;
               if (events.dates.start.timeTBA)
               {
                 datetime = events.dates.start.localDate;
@@ -426,7 +433,7 @@ function getEventDetails(api_name, json)
               }
               break;
           }
-          shows.push(new Event(title, datetime, venue_name, venue_address1,
+          shows.push(new Event(title, url, datetime, venue_name, venue_address1,
                                venue_address2, venue_city, venue_region,
                                venue_postal_code, venue_country, venue_url));
         }
@@ -466,7 +473,7 @@ function displayEvents()
                          <th>&nbsp;</th></tr>`;
       for (let x = 0; x < listsummed.length; x++)
       {
-        let listItem = `<tr><td>${listsummed[x].title()}</td>
+        let listItem = `<tr><td><a href="${listsummed[x].url()})" target="_blank">${listsummed[x].title()}</a></td>
                        <td>${format_date(listsummed[x].datetime(), "iso_date_with_human_time")}</td>
                        <td>${listsummed[x].getVenueItem("venue_name")}</td>
                        <td>${listsummed[x].getVenueItem("venue_city")}</td>

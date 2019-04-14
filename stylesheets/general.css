@@ -32,7 +32,7 @@ h1 {
 }
 h2 {
   margin-bottom: 1em;
-  font-size: 160%;  
+  font-size: 160%;
 }
 h3 {
   font-size: 120%;
@@ -78,6 +78,25 @@ table td button {
 }
 #div_My_Events_Calendar, #div_Total_Return {
     margin: 1em 0;
+}
+#div_Search_Results a:link,
+#div_My_Events_Calendar a:link {
+  text-decoration: none;
+  color: #0e0780;
+}
+#div_Search_Results a:visited,
+#div_My_Events_Calendar a:visited {
+  text-decoration: none;
+  color: #555680;
+}
+#div_Search_Results a:hover,
+#div_My_Events_Calendar a:hover {
+  text-decoration: none;
+  color: #656028;
+}
+#div_Search_Results a:active,
+#div_My_Events_Calendar a:active {
+  text-decoration: none;
 }
 #div_No_Results_Found {
   margin: 15px 0 0 30px;
