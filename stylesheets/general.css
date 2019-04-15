@@ -55,18 +55,28 @@ button:hover {
   color: #6a6a6b;
   cursor: pointer;
 }
-table {
+table:not(.ui-datepicker-calendar) {
   margin-top: 12px;
   border: 1px solid black;
-  width: 90%;
+  width: 100%;
 }
-table td {
+table:not(.ui-datepicker-calendar) tr td:first-child {
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+}
+table:not(.ui-datepicker-calendar) tr td:nth-child(2) {
+  width: 105px;
+  min-width: 105px;
+  max-width: 105px;
+}
+table:not(.ui-datepicker-calendar) td {
   border: 1px solid black;
   padding-left: 0.3em;
   background-color: #b9b9c0;
   color: #000000;
 }
-table td button {
+table:not(.ui-datepicker-calendar) td button {
   display: block;
   margin: auto;
   border-radius: 100%;
